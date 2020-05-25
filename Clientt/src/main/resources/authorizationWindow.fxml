@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="169.0" prefWidth="319.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controllers.AuthWindowController">
+  <children>
+    <TextField fx:id="auth_userName" layoutX="60.0" layoutY="41.0" prefWidth="200.0" promptText="Username" />
+    <Button fx:id="auth_ready" layoutX="123.0" layoutY="128.0" mnemonicParsing="false" onAction="#executeAuth" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Ready" />
+    <PasswordField fx:id="auth_pwd" layoutX="60.0" layoutY="84.0" prefWidth="200.0" promptText="Password" />
+  </children>
+</AnchorPane>

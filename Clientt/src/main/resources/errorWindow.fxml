@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="138.0" prefWidth="223.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controllers.ErrorWindowController">
+  <children>
+    <Label layoutX="84.0" layoutY="14.0" text="ERROR" underline="true">
+      <font>
+        <Font name="System Bold" size="17.0" />
+      </font>
+    </Label>
+    <TextArea fx:id="error_msg_field" editable="false" layoutX="41.0" layoutY="42.0" prefHeight="54.0" prefWidth="141.0" wrapText="true" />
+    <Button fx:id="error_ok_button" layoutX="88.0" layoutY="103.0" mnemonicParsing="false" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius:10px;" onAction="#closeWindow" text="OK" />
+  </children>
+</AnchorPane>

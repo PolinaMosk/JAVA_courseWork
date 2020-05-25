@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="195.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controllers.WDeleteWindowController">
+  <children>
+    <TextField fx:id="w_deleteWindow_BatchId" layoutX="23.0" layoutY="51.0" prefWidth="200.0" promptText="Batch ID" />
+    <Label alignment="CENTER" layoutX="12.0" layoutY="14.0" text="Deleting good from warehouse" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold" size="15.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label font="$x1" layoutX="109.0" layoutY="84.0" text="or" />
+    <Button fx:id="w_deleteWindow_ready" layoutX="88.0" layoutY="156.0" mnemonicParsing="false" onAction="#executeRemoving" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Ready" />
+    <TextField fx:id="w_deleteWindow_goodId" layoutX="23.0" layoutY="112.0" prefWidth="200.0" promptText="Good ID" />
+  </children>
+</AnchorPane>

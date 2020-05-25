@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="179.0" prefWidth="245.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controllers.WAddWindowController">
+  <children>
+    <TextField fx:id="w_addWindow_name" layoutX="31.0" layoutY="46.0" prefHeight="21.0" prefWidth="184.0" promptText="Name" />
+    <TextField fx:id="w_addWindow_priority" layoutX="32.0" layoutY="79.0" prefHeight="21.999900000002526" prefWidth="184.0" promptText="Priority" />
+    <TextField fx:id="w_addWindow_number" layoutX="31.0" layoutY="109.0" prefHeight="22.0" prefWidth="184.0" promptText="Quantity" />
+    <Label alignment="CENTER" layoutX="27.0" layoutY="14.0" text="Adding good in warehouse" textAlignment="CENTER">
+      <font>
+        <Font name="System Bold" size="15.0" />
+      </font>
+    </Label>
+    <Button fx:id="w_addWindow_ready_btn" layoutX="85.0" layoutY="143.0" minHeight="21.0" mnemonicParsing="false" onAction="#executeAdding" prefHeight="29.0" prefWidth="76.0" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Ready" textAlignment="CENTER">
+      <font>
+        <Font size="14.0" />
+      </font>
+    </Button>
+  </children>
+</AnchorPane>

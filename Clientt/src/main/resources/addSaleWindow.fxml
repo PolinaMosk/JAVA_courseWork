@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="229.9510498046875" prefWidth="255.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="gui.controllers.SalesAddController">
+  <children>
+    <Label alignment="CENTER" layoutX="22.0" layoutY="14.0" prefHeight="54.0" prefWidth="212.0" text="Adding sale request" textAlignment="CENTER" wrapText="true">
+      <font>
+        <Font name="System Bold" size="17.0" />
+      </font>
+    </Label>
+    <TextField fx:id="sales_addWindow_name" layoutX="28.0" layoutY="82.0" prefWidth="200.0" promptText="Name" />
+    <TextField fx:id="sales_addWindow_number" layoutX="28.0" layoutY="132.0" prefWidth="200.0" promptText="Quantity" />
+    <Button fx:id="sales_addWindow_ready" layoutX="90.0" layoutY="187.0" mnemonicParsing="false" onAction="#executeAdding" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Ready" />
+  </children>
+</AnchorPane>

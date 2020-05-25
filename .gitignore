@@ -1,0 +1,5 @@
+# Project exclude paths
+/Clientt/.gradle/
+/Clientt/build/
+/Clientt/build/classes/java/main/
+/Server/target/
