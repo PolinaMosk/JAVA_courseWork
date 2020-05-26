@@ -14,5 +14,5 @@ public interface GoodsApi {
     Observable<Response<List<Goods>>> getGoods(@Header("Authorization") String token);
 
     @GET("goods/getGood/{id}")
-    Observable<Response<Goods>> getGoodById(@Header("Authorization") String token, @Path("id") Integer id);
+    Observable<Response<Goods>> getGoodById(@Header("Authorization") String token, @Path("id") Long id);
 }

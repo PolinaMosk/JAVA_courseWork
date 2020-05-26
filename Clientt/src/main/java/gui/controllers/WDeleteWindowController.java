@@ -60,36 +60,53 @@ public class WDeleteWindowController {
         if (w_deleteWindow_BatchId.getText().equals("") && w_deleteWindow_goodId.getText().equals("") ||
         !w_deleteWindow_goodId.getText().equals("") && !w_deleteWindow_BatchId.getText().equals("")) {
             showErrorWindow("One of two id's should be set");
+            return;
         }
         try {
 
             if (w_deleteWindow_BatchId.getText().equals("")) {
                 if (ware == 1) {
-                    app.getW1Api().removeGoodById(app.getToken(), Integer.parseInt(w_deleteWindow_goodId.getText())).subscribe(resp -> {
-                        if (resp == null) MWController.refresh();
+                    app.getW1Api().removeGoodById(app.getToken(), Long.parseLong(w_deleteWindow_goodId.getText())).subscribe(resp -> {
+                        if (!resp.isSuccessful()) showErrorWindow("No good with such id");
+                        else {
+                            Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
+                            stage.close();
+                        }
                     });
                 }
                 if (ware == 2) {
-                    app.getW2Api().removeGoodById(app.getToken(), Integer.parseInt(w_deleteWindow_goodId.getText())).subscribe(resp -> {
-                        if (resp == null) MWController.refresh();
+                    app.getW2Api().removeGoodById(app.getToken(), Long.parseLong(w_deleteWindow_goodId.getText())).subscribe(resp -> {
+                        if (!resp.isSuccessful()) showErrorWindow("No good with such id");
+                        else {
+                            Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
+                            stage.close();
+                        }
                     });
                 }
             } else {
                 if (ware == 1) {
-                    app.getW1Api().removeGoodByWare(app.getToken(), Integer.parseInt(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
-                        if (resp == null) MWController.refresh();
+                    app.getW1Api().removeGoodByWare(app.getToken(), Long.parseLong(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
+                        if (!resp.isSuccessful()) showErrorWindow("No batch with such id");
+                        else {
+                            Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
+                            stage.close();
+                        }
                     });
                 }
                 if (ware == 2) {
-                    app.getW2Api().removeGoodByWare(app.getToken(), Integer.parseInt(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
-                        if (resp == null) MWController.refresh();
+                    app.getW2Api().removeGoodByWare(app.getToken(), Long.parseLong(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
+                        if (!resp.isSuccessful()) showErrorWindow("No batch with such id");
+                        else {
+                            Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
+                            stage.close();
+                        }
                     });
                 }
             }
-            Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
-            stage.close();
+        } catch (NumberFormatException ex) {
+            showErrorWindow("Invalid id format");
         } catch (Exception ex) {
-            showErrorWindow(ex.getMessage());
+            showErrorWindow(ex.toString());
         }
     }
 }

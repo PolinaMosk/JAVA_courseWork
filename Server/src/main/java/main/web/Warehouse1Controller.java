@@ -33,11 +33,11 @@ public class Warehouse1Controller {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @GetMapping("/getGoodByWareId/{id}")
-    public ResponseEntity<Goods> getGoodsById(@PathVariable("id") Integer id) {
+    public ResponseEntity<Goods> getGoodsById(@PathVariable("id") Long id) {
         return new ResponseEntity(service.findGoodByWareId(id), HttpStatus.OK);
     }
     @GetMapping("/getGoodInWare/{id}")
-    public ResponseEntity<Warehouse1> getGood(@PathVariable("id") Integer id) {
+    public ResponseEntity<Warehouse1> getGood(@PathVariable("id") Long id) {
         try {
             return new ResponseEntity(service.findGood(id), HttpStatus.OK);
         } catch (InvalidParameterException ex){
@@ -45,12 +45,12 @@ public class Warehouse1Controller {
         }
     }
     @DeleteMapping("/removeByBatchId/{id}")
-    public void removeGoodbyBatchId(@PathVariable("id") Integer id){
+    public void removeGoodbyBatchId(@PathVariable("id") Long id){
         service.removeBatch(id);
     }
 
     @DeleteMapping("/removeByGoodId/{id}")
-    public void removeGoodbyId(@PathVariable("id") Integer id){
+    public void removeGoodbyId(@PathVariable("id") Long id){
         service.removeGood(id);
     }
     @Autowired

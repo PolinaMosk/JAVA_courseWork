@@ -39,7 +39,7 @@ public class Warehouse2ServiceImp implements Warehouse2Service {
         return goods;
     }
     @Override
-    public Goods findGoodByWareId(Integer id){
+    public Goods findGoodByWareId(Long id){
         Optional<Warehouse2> ware = W2Repository.findById(id);
         if (ware.isPresent()) {
             Optional<Goods> good = goodsRepository.findById(ware.get().getGood().getId());
@@ -49,7 +49,7 @@ public class Warehouse2ServiceImp implements Warehouse2Service {
     }
 
     @Override
-    public Warehouse2 findGood(Integer id) {
+    public Warehouse2 findGood(Long id) {
         Optional<Warehouse2> optionalGood = W2Repository.findById(id);
         if (optionalGood.isPresent()) {
             return optionalGood.get();
@@ -59,32 +59,17 @@ public class Warehouse2ServiceImp implements Warehouse2Service {
     }
 
     @Override
-    public void removeBatch(Integer id) {
+    public void removeBatch(Long id) {
         Optional<Warehouse2> removing = W2Repository.findById(id);
         if (removing.isPresent()) {
-            Integer id_ = removing.get().getGood().getId();
-            boolean flag = false;
-            for (Warehouse1 w1: W1Repository.findAll())
-                if (w1.getGood().getId().equals(id_)) flag = true;
-            if (!flag) {
-                goodsRepository.deleteById(id_);
-                W2Repository.deleteById(id);
-            } else {
-                W2Repository.deleteById(id);
-            }
+           W2Repository.deleteById(id);
         } else throw new InvalidParameterException("No product with such id in warehouse1");
     }
 
     @Override
-    public void removeGood(Integer id) {
+    public void removeGood(Long id) {
         for (Warehouse2 w2: W2Repository.findAll()) {
             if (w2.getGood().getId().equals(id)) {
-                for (Warehouse1 w1: W1Repository.findAll())
-                    if (w1.getGood().getId().equals(id)) {
-                        W2Repository.deleteById(w2.getId());
-                        return;
-                    }
-                goodsRepository.deleteById(id);
                 W2Repository.deleteById(w2.getId());
                 return;
             }

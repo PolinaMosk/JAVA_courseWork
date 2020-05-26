@@ -8,9 +8,9 @@ import java.util.List;
 public interface Warehouse1Service {
     List<Warehouse1> listW1();
     List<Goods> listGoodsInW1();
-    Warehouse1 findGood(Integer id);
-    void removeBatch(Integer id);
-    void removeGood(Integer id);
+    Warehouse1 findGood(Long id);
+    void removeBatch(Long id);
+    void removeGood(Long id);
     void addWare(Warehouse1 ware);
-    Goods findGoodByWareId(Integer id);
+    Goods findGoodByWareId(Long id);
 }

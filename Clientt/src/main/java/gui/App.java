@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import model.User;
 
 import java.io.IOException;
+import java.security.InvalidKeyException;
 
 public class App extends Application {
 
@@ -75,16 +76,23 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        this.primaryStage = primaryStage;
-        authApi = component.provideAuthApi();
-        goodsApi = component.provideGoodsApi();
-        salesApi = component.provideSalesApi();
-        W1Api = component.provideW1Api();
-        W2Api = component.provideW2Api();
+        try {
+            this.primaryStage = primaryStage;
+            authApi = component.provideAuthApi();
+            goodsApi = component.provideGoodsApi();
+            salesApi = component.provideSalesApi();
+            W1Api = component.provideW1Api();
+            W2Api = component.provideW2Api();
 
-        showAuthWindow();
-        primaryStage.setResizable(false);
-        primaryStage.show();
+            showAuthWindow();
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (IllegalArgumentException ex) {
+            primaryStage.close();
+            showAuthWindow();
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        }
 
     }
 

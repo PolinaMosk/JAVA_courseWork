@@ -40,7 +40,7 @@ public class Warehouse1ServiceImp implements Warehouse1Service {
     }
 
     @Override
-    public Goods findGoodByWareId(Integer id){
+    public Goods findGoodByWareId(Long id){
         Optional<Warehouse1> ware = W1Repository.findById(id);
         if (ware.isPresent()) {
             Optional<Goods> good = goodsRepository.findById(ware.get().getGood().getId());
@@ -50,7 +50,7 @@ public class Warehouse1ServiceImp implements Warehouse1Service {
     }
 
     @Override
-    public Warehouse1 findGood(Integer id) {
+    public Warehouse1 findGood(Long id) {
         Optional<Warehouse1> optionalGood = W1Repository.findById(id);
         if (optionalGood.isPresent()) {
             return optionalGood.get();
@@ -60,7 +60,7 @@ public class Warehouse1ServiceImp implements Warehouse1Service {
     }
 
     @Override
-    public void removeBatch(Integer id) {
+    public void removeBatch(Long id) {
         Optional<Warehouse1> removing = W1Repository.findById(id);
         if (removing.isPresent()) {
            W1Repository.deleteById(id);
@@ -68,15 +68,9 @@ public class Warehouse1ServiceImp implements Warehouse1Service {
     }
 
     @Override
-    public void removeGood(Integer id) {
+    public void removeGood(Long id) {
         for (Warehouse1 w1: W1Repository.findAll()) {
             if (w1.getGood().getId().equals(id)) {
-                for (Warehouse2 w2: W2Repository.findAll())
-                    if (w2.getGood().getId().equals(id)) {
-                        W1Repository.deleteById(w1.getId());
-                        return;
-                    }
-                goodsRepository.deleteById(id);
                 W1Repository.deleteById(w1.getId());
                 return;
             }

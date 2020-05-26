@@ -23,7 +23,7 @@ public class GoodsController {
     }
 
     @GetMapping("/getGood/{id}")
-    public ResponseEntity<Goods> getGood(@PathVariable("id") Integer id) {
+    public ResponseEntity<Goods> getGood(@PathVariable("id") Long id) {
         try {
             return new ResponseEntity(goodsService.findGood(id), HttpStatus.OK);
         } catch (InvalidParameterException ex){

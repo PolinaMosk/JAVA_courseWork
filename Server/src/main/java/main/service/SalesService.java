@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface SalesService {
     List<Sales> listSales();
-    Sales findSale(Integer id);
+    Sales findSale(Long id);
     void addSale(Sales sale);
-    Goods findGoodBySale(Integer id);
+    Goods findGoodBySale(Long id);
     List<Goods> listGoodsInSales();
 }

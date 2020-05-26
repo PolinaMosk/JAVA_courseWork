@@ -175,7 +175,7 @@ public class MainWindowController {
         loadSalesTable();
         goods_search_field.textProperty().addListener(search ->{
             if (!goods_search_field.getText().equals("")) {
-                app.getGoodsApi().getGoodById(app.getToken(), Integer.parseInt(goods_search_field.getText())).subscribe(resp -> {
+                app.getGoodsApi().getGoodById(app.getToken(), Long.parseLong(goods_search_field.getText())).subscribe(resp -> {
                     goods_table.getItems().clear();
                     goods_table.getItems().addAll(resp.body());
                 });
@@ -186,8 +186,8 @@ public class MainWindowController {
         });
         w1_search_field.textProperty().addListener(search ->{
             if (!w1_search_field.getText().equals("")) {
-                app.getW1Api().getGoodInWare(app.getToken(), Integer.parseInt(w1_search_field.getText())).subscribe(resp -> {
-                    app.getW1Api().getGoodByWareId(app.getToken(), Integer.parseInt(w1_search_field.getText())).subscribe(res ->{
+                app.getW1Api().getGoodInWare(app.getToken(), Long.parseLong(w1_search_field.getText())).subscribe(resp -> {
+                    app.getW1Api().getGoodByWareId(app.getToken(), Long.parseLong(w1_search_field.getText())).subscribe(res ->{
                         w1_table.getItems().clear();
                         w1_goods_table.getItems().clear();
                         w1_table.getItems().addAll(resp.body());
@@ -202,8 +202,8 @@ public class MainWindowController {
         });
         w2_search_field.textProperty().addListener(search ->{
             if (!w2_search_field.getText().equals("")) {
-                app.getW2Api().getGoodInWare(app.getToken(), Integer.parseInt(w2_search_field.getText())).subscribe(resp -> {
-                    app.getW2Api().getGoodByWareId(app.getToken(), Integer.parseInt(w2_search_field.getText())).subscribe(res ->{
+                app.getW2Api().getGoodInWare(app.getToken(), Long.parseLong(w2_search_field.getText())).subscribe(resp -> {
+                    app.getW2Api().getGoodByWareId(app.getToken(), Long.parseLong(w2_search_field.getText())).subscribe(res ->{
                         w2_table.getItems().clear();
                         w2_goods_table.getItems().clear();
                         w2_table.getItems().addAll(resp.body());
@@ -218,8 +218,8 @@ public class MainWindowController {
         });
        sales_search_field.textProperty().addListener(search ->{
            if (!sales_search_field.getText().equals("")) {
-               app.getSalesApi().getGroupById(app.getToken(), Integer.parseInt(sales_search_field.getText())).subscribe(resp -> {
-                   app.getSalesApi().getGoodsBySaleId(app.getToken(), Integer.parseInt(sales_search_field.getText())).subscribe(res -> {
+               app.getSalesApi().getGroupById(app.getToken(), Long.parseLong(sales_search_field.getText())).subscribe(resp -> {
+                   app.getSalesApi().getGoodsBySaleId(app.getToken(), Long.parseLong(sales_search_field.getText())).subscribe(res -> {
                        sales_table.getItems().clear();
                        sales_goods_table.getItems().clear();
                        sales_table.getItems().addAll(resp.body());
@@ -256,7 +256,7 @@ public class MainWindowController {
             if (resp.isSuccessful() && resp.body() != null) {
                 goods_table.getItems().addAll(resp.body());
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
     }
@@ -277,7 +277,7 @@ public class MainWindowController {
                     }
                 });
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
     }
@@ -289,7 +289,7 @@ public class MainWindowController {
             if (resp.isSuccessful() && resp.body() != null) {
                 w1_table.getItems().addAll(resp.body());
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
         w1_goodId_column.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -299,7 +299,7 @@ public class MainWindowController {
             if (resp.isSuccessful() && resp.body() != null) {
                 w1_goods_table.getItems().addAll(resp.body());
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
 
@@ -312,7 +312,7 @@ public class MainWindowController {
             if (resp.isSuccessful() && resp.body() != null) {
                 w2_table.getItems().addAll(resp.body());
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
         w2_goodId_column.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -322,7 +322,7 @@ public class MainWindowController {
             if (resp.isSuccessful() && resp.body() != null) {
                 w2_goods_table.getItems().addAll(resp.body());
             } else {
-
+                throw new IllegalArgumentException("Expired token or problems with server");
             }
         });
     }

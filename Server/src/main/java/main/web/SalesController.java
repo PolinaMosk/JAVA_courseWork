@@ -26,7 +26,7 @@ public class SalesController {
         return new ResponseEntity(list, HttpStatus.OK);
     }
     @GetMapping("/getGoodBySaleId/{id}")
-    public ResponseEntity<Goods> getGoodsBySale(@PathVariable("id") Integer id){
+    public ResponseEntity<Goods> getGoodsBySale(@PathVariable("id") Long id){
         Goods good = salesService.findGoodBySale(id);
         return new ResponseEntity(good, HttpStatus.OK);
     }
@@ -37,7 +37,7 @@ public class SalesController {
     }
 
     @GetMapping("/getSale/{id}")
-    public ResponseEntity<Sales> getSale(@PathVariable("id") Integer id) {
+    public ResponseEntity<Sales> getSale(@PathVariable("id") Long id) {
           try {
               return new ResponseEntity(salesService.findSale(id), HttpStatus.OK);
           } catch (InvalidParameterException ex){

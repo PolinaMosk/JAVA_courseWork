@@ -1,4 +1,5 @@
 package gui.controllers;
+
 import java.io.IOException;
 import java.net.URL;
 import java.security.InvalidParameterException;
@@ -43,12 +44,12 @@ public class WAddWindowController {
     void initialize() {
     }
 
-    public void loadWindow(App app, Integer ware){
+    public void loadWindow(App app, Integer ware) {
         this.app = app;
         this.ware = ware;
     }
 
-    void showErrorWindow(String msg){
+    void showErrorWindow(String msg) {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/errorWindow.fxml"));
             Stage stage = new Stage();
@@ -62,30 +63,38 @@ public class WAddWindowController {
         }
     }
 
-    public void executeAdding(){
+    public void executeAdding() {
         if (w_addWindow_name.getText().equals("") || w_addWindow_priority.getText().equals("") ||
                 w_addWindow_number.getText().equals("")) {
             showErrorWindow("You did't set all parameters");
             return;
-        };
+        }
         try {
             Goods good = new Goods(w_addWindow_name.getText(), Float.parseFloat(w_addWindow_priority.getText()));
             if (ware == 1) {
                 Warehouse1 warehouse1 = new Warehouse1(good, Integer.parseInt(w_addWindow_number.getText()));
                 app.getW1Api().addGoodToWare(app.getToken(), warehouse1).subscribe(newWare -> {
-                    if (newWare == null) MWController.refresh();
+                    if (!newWare.isSuccessful()) showErrorWindow("Wrong parameters");
+                    else {
+                        Stage stage = (Stage) w_addWindow_ready_btn.getScene().getWindow();
+                        stage.close();
+                    }
                 });
             } else {
                 Warehouse2 warehouse2 = new Warehouse2(good, Integer.parseInt(w_addWindow_number.getText()));
                 app.getW2Api().addGoodToWare(app.getToken(), warehouse2).subscribe(newWare -> {
-                    if (newWare == null) MWController.refresh();
+                    if (!newWare.isSuccessful()) showErrorWindow("Wrong parameters");
+                    else {
+                        Stage stage = (Stage) w_addWindow_ready_btn.getScene().getWindow();
+                        stage.close();
+                    }
                 });
             }
 
-            Stage stage = (Stage) w_addWindow_ready_btn.getScene().getWindow();
-            stage.close();
+        } catch (NumberFormatException ex) {
+            showErrorWindow("Invalid priority or quantity");
         } catch (Exception ex) {
-            showErrorWindow(ex.getMessage());
+            showErrorWindow(ex.toString());
         }
     }
 

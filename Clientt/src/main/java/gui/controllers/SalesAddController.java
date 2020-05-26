@@ -45,11 +45,11 @@ public class SalesAddController {
     void initialize() {
     }
 
-    public void loadWindow(App app){
+    public void loadWindow(App app) {
         this.app = app;
     }
 
-    void showErrorWindow(String msg){
+    void showErrorWindow(String msg) {
         try {
             final FXMLLoader loader = new FXMLLoader(getClass().getResource("/errorWindow.fxml"));
             Stage stage = new Stage();
@@ -63,16 +63,17 @@ public class SalesAddController {
         }
     }
 
-    public void executeAdding(){
-        if (sales_addWindow_name.getText().equals("") || sales_addWindow_number.getText().equals("")) {
-            showErrorWindow("Not all parameters are set");
-            return;
-        }
-        if (Integer.parseInt(sales_addWindow_number.getText()) <= 0) {
-            showErrorWindow("Number must be positive");
-            return;
-        }
+    public void executeAdding() {
         try {
+            if (sales_addWindow_name.getText().equals("") || sales_addWindow_number.getText().equals("")) {
+                showErrorWindow("Not all parameters are set");
+                return;
+            }
+            if (Integer.parseInt(sales_addWindow_number.getText()) <= 0) {
+                showErrorWindow("Number must be positive");
+                return;
+            }
+
             Sales sale = new Sales();
             Goods good = new Goods();
             good.setName(sales_addWindow_name.getText());
@@ -80,17 +81,18 @@ public class SalesAddController {
             sale.setCreate_date(" ");
             sale.setGood_count(Integer.parseInt(sales_addWindow_number.getText()));
             sale.setGood(good);
-             app.getSalesApi().addSale(app.getToken(), sale).subscribe(resp -> {
-                 if (!resp.isSuccessful()) {
-                     showErrorWindow("No good with such name or not enough goods in warehouses");
-                 } else {
-                     Stage stage = (Stage) sales_addWindow_ready.getScene().getWindow();
-                     stage.close();
-                 }
-             });
+            app.getSalesApi().addSale(app.getToken(), sale).subscribe(resp -> {
+                if (!resp.isSuccessful()) {
+                    showErrorWindow("No good with such name or not enough goods in warehouses");
+                } else {
+                    Stage stage = (Stage) sales_addWindow_ready.getScene().getWindow();
+                    stage.close();
+                }
+            });
+        } catch (NumberFormatException ex) {
+            showErrorWindow("Invalid quantity format");
         } catch (Exception ex) {
-            showErrorWindow(ex.getMessage());
-            return;
+            showErrorWindow(ex.toString());
         }
     }
 }

@@ -13,10 +13,10 @@ public interface SalesApi {
     Observable<Response<List<Sales>>> getSales(@Header("Authorization") String token);
 
     @GET("sales/getGoodBySaleId/{id}")
-    Observable<Response<Goods>> getGoodsBySaleId(@Header("Authorization") String token, @Path("id") Integer id);
+    Observable<Response<Goods>> getGoodsBySaleId(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("sales/getSale/{id}")
-    Observable<Response<Sales>> getGroupById(@Header("Authorization") String token, @Path("id") Integer id);
+    Observable<Response<Sales>> getGroupById(@Header("Authorization") String token, @Path("id") Long id);
 
     @GET("sales/listGoodsInSales")
     Observable<Response<List<Goods>>> listGoodsInSales(@Header("Authorization") String token);

@@ -19,7 +19,7 @@ public class GoodsServiceImp implements GoodsService {
     }
 
     @Override
-    public Goods findGood(Integer id) {
+    public Goods findGood(Long id) {
         Optional<Goods> optionalGood = goodsRepository.findById(id);
         if (optionalGood.isPresent()) {
             return optionalGood.get();

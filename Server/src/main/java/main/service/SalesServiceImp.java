@@ -34,7 +34,7 @@ public class SalesServiceImp implements SalesService {
     }
 
     @Override
-    public Sales findSale(Integer id) {
+    public Sales findSale(Long id) {
         Optional<Sales> optionalApp = salesRepository.findById(id);
         if (optionalApp.isPresent()) {
             return optionalApp.get();
@@ -44,7 +44,7 @@ public class SalesServiceImp implements SalesService {
     }
 
     @Override
-    public Goods findGoodBySale(Integer id) {
+    public Goods findGoodBySale(Long id) {
         Optional<Sales> sale = salesRepository.findById(id);
         if (sale.isPresent()) return sale.get().getGood();
         else
