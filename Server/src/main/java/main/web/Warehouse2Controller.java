@@ -45,12 +45,12 @@ public class Warehouse2Controller {
         }
     }
     @DeleteMapping("/removeByBatchId/{id}")
-    public void removeGoodbyBatchId(@PathVariable("id") Long id){
+    public void removeGoodByBatchId(@PathVariable("id") Long id){
         service.removeBatch(id);
     }
 
     @DeleteMapping("/removeByGoodId/{id}")
-    public void removeGoodbyId(@PathVariable("id") Long id){
+    public void removeGoodById(@PathVariable("id") Long id){
         service.removeGood(id);
     }
     @Autowired
