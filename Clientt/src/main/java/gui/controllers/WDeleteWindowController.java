@@ -67,7 +67,10 @@ public class WDeleteWindowController {
             if (w_deleteWindow_BatchId.getText().equals("")) {
                 if (ware == 1) {
                     app.getW1Api().removeGoodById(app.getToken(), Long.parseLong(w_deleteWindow_goodId.getText())).subscribe(resp -> {
-                        if (!resp.isSuccessful()) showErrorWindow("No good with such id");
+                        if (!resp.isSuccessful()) {
+                            if (resp.code() == 403) showErrorWindow("Access denied");
+                            else showErrorWindow("No good with such id");
+                        }
                         else {
                             Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
                             stage.close();
@@ -76,7 +79,10 @@ public class WDeleteWindowController {
                 }
                 if (ware == 2) {
                     app.getW2Api().removeGoodById(app.getToken(), Long.parseLong(w_deleteWindow_goodId.getText())).subscribe(resp -> {
-                        if (!resp.isSuccessful()) showErrorWindow("No good with such id");
+                        if (!resp.isSuccessful()) {
+                            if (resp.code() == 403) showErrorWindow("Access denied");
+                            else showErrorWindow("No good with such id");
+                        }
                         else {
                             Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
                             stage.close();
@@ -86,7 +92,10 @@ public class WDeleteWindowController {
             } else {
                 if (ware == 1) {
                     app.getW1Api().removeGoodByWare(app.getToken(), Long.parseLong(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
-                        if (!resp.isSuccessful()) showErrorWindow("No batch with such id");
+                        if (!resp.isSuccessful()) {
+                            if (resp.code() == 403) showErrorWindow("Access denied");
+                            else showErrorWindow("No batch with such id");
+                        }
                         else {
                             Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
                             stage.close();
@@ -95,7 +104,10 @@ public class WDeleteWindowController {
                 }
                 if (ware == 2) {
                     app.getW2Api().removeGoodByWare(app.getToken(), Long.parseLong(w_deleteWindow_BatchId.getText())).subscribe(resp -> {
-                        if (!resp.isSuccessful()) showErrorWindow("No batch with such id");
+                        if (!resp.isSuccessful()) {
+                            if (resp.code() == 403) showErrorWindow("Access denied");
+                            else showErrorWindow("No batch with such id");
+                        }
                         else {
                             Stage stage = (Stage) w_deleteWindow_BatchId.getScene().getWindow();
                             stage.close();

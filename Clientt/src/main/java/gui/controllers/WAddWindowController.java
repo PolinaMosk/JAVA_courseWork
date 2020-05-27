@@ -74,7 +74,10 @@ public class WAddWindowController {
             if (ware == 1) {
                 Warehouse1 warehouse1 = new Warehouse1(good, Integer.parseInt(w_addWindow_number.getText()));
                 app.getW1Api().addGoodToWare(app.getToken(), warehouse1).subscribe(newWare -> {
-                    if (!newWare.isSuccessful()) showErrorWindow("Wrong parameters");
+                    if (!newWare.isSuccessful()) {
+                        if (newWare.code() == 403) showErrorWindow("Access denied");
+                        else showErrorWindow("No good with such name");
+                    }
                     else {
                         Stage stage = (Stage) w_addWindow_ready_btn.getScene().getWindow();
                         stage.close();
@@ -83,7 +86,10 @@ public class WAddWindowController {
             } else {
                 Warehouse2 warehouse2 = new Warehouse2(good, Integer.parseInt(w_addWindow_number.getText()));
                 app.getW2Api().addGoodToWare(app.getToken(), warehouse2).subscribe(newWare -> {
-                    if (!newWare.isSuccessful()) showErrorWindow("Wrong parameters");
+                    if (!newWare.isSuccessful()) {
+                        if (newWare.code() == 403) showErrorWindow("Access denied");
+                        else showErrorWindow("No good with such name");
+                    }
                     else {
                         Stage stage = (Stage) w_addWindow_ready_btn.getScene().getWindow();
                         stage.close();

@@ -83,6 +83,9 @@ public class SalesAddController {
             sale.setGood(good);
             app.getSalesApi().addSale(app.getToken(), sale).subscribe(resp -> {
                 if (!resp.isSuccessful()) {
+                    if (resp.code() == 403) {
+                        showErrorWindow("Access denied");
+                    } else
                     showErrorWindow("No good with such name or not enough goods in warehouses");
                 } else {
                     Stage stage = (Stage) sales_addWindow_ready.getScene().getWindow();
