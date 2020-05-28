@@ -12,7 +12,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wholesaledb/goods")
+@RequestMapping("/wholesalecomp/goods")
 public class GoodsController {
     private GoodsService goodsService;
 

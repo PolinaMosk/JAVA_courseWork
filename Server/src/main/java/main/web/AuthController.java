@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/wholesaledb/auth")
+@RequestMapping("/wholesalecomp/auth")
 public class AuthController {
     @Autowired
     AuthenticationManager authManager;

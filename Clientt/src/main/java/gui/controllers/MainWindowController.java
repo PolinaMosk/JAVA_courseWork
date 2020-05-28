@@ -8,10 +8,7 @@ import gui.App;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -232,6 +229,11 @@ public class MainWindowController {
                loadSalesTable();
            }
         });
+       sales_table.setOnScroll(scr -> {
+           ScrollBar scroll = (ScrollBar) sales_table.lookup(".scroll-bar:vertical");
+           ScrollBar scrollGoods = (ScrollBar) sales_goods_table.lookup(".scroll-bar:vertical");
+           scrollGoods.setValue(scroll.getValue());
+       });
     }
 
     public void refresh() {
@@ -415,6 +417,12 @@ public class MainWindowController {
         sales_table.getItems().clear();
         sales_goods_table.getItems().clear();
         loadSalesTable();
+    }
+
+    public void sincScroll(){
+        ScrollBar scroll = (ScrollBar) sales_table.lookup(".scroll-bar:vertical");
+        ScrollBar scrollGoods = (ScrollBar) sales_goods_table.lookup(".scroll-bar:vertical");
+        scrollGoods.setValue(scroll.getValue());
     }
 
 }

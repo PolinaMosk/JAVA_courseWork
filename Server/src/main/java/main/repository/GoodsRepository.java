@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface GoodsRepository extends CrudRepository<Goods, Long> {
     Optional<List<Goods>> findByName(String wareName);
+    Optional<List<Goods>> findAllByName(String wareName);
 }

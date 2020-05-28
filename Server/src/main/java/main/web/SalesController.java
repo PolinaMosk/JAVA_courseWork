@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wholesaledb/sales")
+@RequestMapping("/wholesalecomp/sales")
 public class SalesController {
     private SalesService salesService;
     @PostMapping(value = "/addSale", consumes = "application/json", produces = "application/json")

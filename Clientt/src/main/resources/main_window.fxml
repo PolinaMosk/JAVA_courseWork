@@ -86,21 +86,21 @@
           <content>
             <AnchorPane id="Content" fx:id="salesTab" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>
-                <TableView fx:id="sales_table" layoutX="0.0" layoutY="0.0" prefHeight="359.0" prefWidth="475.0">
+                <TableView fx:id="sales_table" layoutX="0.0" layoutY="0.0" onScroll="#sincScroll" prefHeight="359.0" prefWidth="475.0">
                   <columns>
                     <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="72.0" sortable="false" text="ID" fx:id="sales_id_column" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="111.0" sortable="false" text="Quantity" fx:id="sales_number_column" />
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="202.0" sortable="false" text="Date" fx:id="sales_date_column" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="94.0" sortable="false" text="Quantity" fx:id="sales_number_column" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" sortable="false" text="Date" fx:id="sales_date_column" />
                   </columns>
                 </TableView>
                 <TextField fx:id="sales_search_field" layoutX="493.0" layoutY="0.0" prefHeight="34.0" prefWidth="106.0" promptText="Find by ID" />
                 <Button fx:id="sales_add_btn" font="$x1" layoutX="493.0" layoutY="95.0" mnemonicParsing="false" onAction="#addSale" prefHeight="54.0" prefWidth="106.0" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Add sale" textAlignment="CENTER" wrapText="true" />
                 <Button id="goods_refresh_btn" fx:id="sales_refresh_btn" font="$x1" layoutX="493.0" layoutY="287.0" mnemonicParsing="false" onAction="#refreshSales" prefHeight="42.0" prefWidth="106.0" style="-fx-background-color: #FFFFFF;&#10;-fx-border-color: #000000;&#10;-fx-border-radius: 10px;" text="Refresh" />
-                <TableView fx:id="sales_goods_table" layoutX="369.0" layoutY="0.0" prefHeight="359.0" prefWidth="105.99990000000253">
+                <TableView fx:id="sales_goods_table" layoutX="342.0" layoutY="0.0" prefHeight="359.0" prefWidth="133.0">
                   <columns>
-                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="103.0" sortable="false" text="Name" fx:id="sales_goodName" />
+                    <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="119.0" sortable="false" text="Name" visible="true" fx:id="sales_goodName" />
                     <TableColumn prefWidth="75.0" text="Column X" visible="false" fx:id="sales_goodId" />
-                    <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="0.0" text="Column X" visible="false" fx:id="sales_goodPr" />
+                    <TableColumn maxWidth="5000.0" minWidth="0.0" prefWidth="65.0" text="Column X" visible="false" fx:id="sales_goodPr" />
                   </columns>
                 </TableView>
               </children>

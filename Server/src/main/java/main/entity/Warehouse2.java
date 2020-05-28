@@ -11,7 +11,7 @@ public class Warehouse2 {
     @Column(name="good_count")
     private Integer good_count;
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     private Goods good;
 
     public Warehouse2() {

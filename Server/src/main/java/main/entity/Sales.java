@@ -23,7 +23,7 @@ public class Sales {
     @Column(name = "create_date", nullable = false)
     private Date create_date;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @ManyToOne
     private Goods good;
 
     public Sales() {

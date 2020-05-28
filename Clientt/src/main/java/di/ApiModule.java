@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 
 @Module
 public class ApiModule {
-    private static final String BASE_URL = "http://localhost:8080/wholesaledb/";
+    private static final String BASE_URL = "http://localhost:8080/wholesalecomp/";
 
     @Provides
     public Gson provideGson() {

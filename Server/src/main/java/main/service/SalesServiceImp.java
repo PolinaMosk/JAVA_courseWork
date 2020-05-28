@@ -68,12 +68,18 @@ public class SalesServiceImp implements SalesService {
     public void addSale(Sales app) {
         if (app.getGood_count() <= 0) throw new InvalidParameterException("Number of goods must be positive");
         Integer cnt = app.getGood_count();
-        Optional<List<Goods>> optionalGood = goodsRepository.findByName(app.getGood().getName());
-        if (optionalGood.isPresent()) {
+        //Optional<List<Goods>> optionalGood = goodsRepository.findAllByName(app.getGood().getName());
+        List<Goods> optionalGood = new ArrayList<>();
+        for (Goods g: goodsRepository.findAll()) {
+            if (g.getName().equals(app.getGood().getName())) {
+                optionalGood.add(g);
+            }
+        }
+        if (!optionalGood.isEmpty()) {
             Integer sum = 0;
             Warehouse1 w1 = null;
             Warehouse2 w2 = null;
-            for (Goods g : optionalGood.get()) {
+            for (Goods g : optionalGood) {
                 for (Warehouse1 w: W1Repository.findAll())
                     if (w.getGood().getId().equals(g.getId()))
                         w1 = w;
@@ -93,8 +99,23 @@ public class SalesServiceImp implements SalesService {
                 }
             }
             if (sum < app.getGood_count()) throw new InvalidParameterException ("Not enough goods for this sale");
-            optionalGood.get().sort(Comparator.comparing(Goods::getPriority).reversed());
-            for (Goods g : optionalGood.get()) {
+            //optionalGood.get().sort(Comparator.comparing(Goods::getPriority));
+            boolean sorted = false;
+            Goods temp;
+            while(!sorted) {
+                sorted = true;
+                for (int i = 0; i < optionalGood.size() - 1; i++) {
+                    if (optionalGood.get(i).getPriority() > optionalGood.get(i + 1).getPriority()) {
+                        temp = optionalGood.get(i);
+                        optionalGood.set(i, optionalGood.get(i + 1));
+                        optionalGood.set(i + 1, temp);
+                        sorted = false;
+                    }
+                }
+            }
+            for (Goods g : optionalGood) {
+                w1 = null;
+                w2 = null;
                 for (Warehouse1 w: W1Repository.findAll())
                     if (w.getGood().getId().equals(g.getId()))
                         w1 = w;

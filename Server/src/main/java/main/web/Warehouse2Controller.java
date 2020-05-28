@@ -14,7 +14,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/wholesaledb/warehouse2")
+@RequestMapping("/wholesalecomp/warehouse2")
 public class Warehouse2Controller {
     private Warehouse2Service service;
     @PostMapping(value = "/addWare", consumes = "application/json")
