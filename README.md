@@ -1,2 +1,2 @@
 # JAVA_courseWork
-Вариант 3(оптовая компания)
+Использование Spring Framework
